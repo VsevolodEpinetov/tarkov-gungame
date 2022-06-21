@@ -1,0 +1,200 @@
+{
+  "ak": {
+    "title": "АК-74",
+    "subtitle": "Автомат Калашникова калибра 5,45 мм, разработанный в 1970 году конструктором М. Т. Калашниковым как дальнейшее развитие АКМ в связи с переходом Вооруженных Сил на новый боеприпас 5.45x39.",
+    "previewImage": "AKPreview.webp",
+    "totalPoints": 128,
+    "levels": [
+      {
+        "butts": [ "akts_1_2" ],
+        "grips": [ "6p4sb9_1_1" ],
+        "magazines": [ "saiga545-10_1_1" ],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [ "6p1sb12_1_1" ],
+        "handguards": [ "vpo136_1_1" ],
+        "tacticalGrips": [],
+        "ammo": [ "545sp_1_1" ],
+        "sights": [],
+        "optics": []
+      },
+      {
+        "butts": [ "6p20sb5_1_2", "m4ss_1_2", "sopmod_1_2", "glshock_1_2", "glr16s_1_2", "prsgen3_1_2" ],
+        "grips": [],
+        "magazines": [ "6l23545_2_1" ],
+        "muzzles": [ "6p20020_1_1", "6p26020_1_1"],
+        "covers": [ "6p101_1_2", "6p3401_1_2" ],
+        "tubes": [],
+        "handguards": [ "ak100_1_1", "wasr1063_1_1" ],
+        "tacticalGrips": [ "ash12_1_1", "kacvfg_1_1", "gfmod3_1_1", "rk6_1_1"],
+        "ammo": [ "545hp_1_1" ],
+        "sights": [ "okp7_1_1", "ekp818_1_1", "1p87_1_1" ],
+        "optics": [ "hhs1_1_2" ]
+      },
+      {
+        "butts": [ "vipermod1_1_2" ],
+        "grips": [],
+        "magazines": [ "ak12_2_1", "545pmag30_2_1"],
+        "muzzles": [],
+        "covers": [ "bastion_1_2" ],
+        "tubes": [],
+        "handguards": [ "tdiakml_1_1" ],
+        "tacticalGrips": [ "stubbybgv_1_1", "cobratactical_1_1", "pillau_1_1"],
+        "ammo": [ "545ps_1_1", "545prs_1_1"],
+        "sights": [ "uh1_1_1", "hs401_1_1"],
+        "optics": [ "hamr_1_2", "bravo4_1_2"]
+      },
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      },
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      },
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      },
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      }
+    ]
+  },
+  "m4a1": {
+    "title": "M4A1",
+    "subtitle": "Colt M4A1- штурмовая винтовка (карабин), созданная в США на базе платформы AR-15 под патрон 5.56x45 NATO. Планировалась к вооружению экипажей боевых машин и расчётов техники, которым было необходимо иметь оружие меньших габаритов, чем штатное вооружение, но использующее стандартные боеприпасы. Однако вскоре, US SOCOM (Командование Сил Специальных Операций США) приняло на вооружение M4A1 для всех входящих в его состав подразделений. Затем последовало полное принятие M4A1 на вооружение в армии и морской пехоте США.",
+    "previewImage": "M4Preview.webp",
+    "totalPoints": 128,
+    "levels": [
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      },
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      },
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      },
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      },
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      },
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      },
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      }
+    ]
+  }
+}
