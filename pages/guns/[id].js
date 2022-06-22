@@ -7,10 +7,9 @@ import { getAllGunsNames, getGunData } from '../../lib/guns'
 import LevelCard from '../../components/LevelCard';
 import { useUserProgress } from '../../lib/UserProgressContext'
 import Link from 'next/link';
-import KillsInput from '../../components/KillsInput';
 import GunStats from '../../components/GunStats';
 
-export default function GunPage({ gunData, gunKey }) {
+export default function GunPage({ gunSettings, gunID }) {
   const { userProgress, setUserProgress } = useUserProgress();
 
   return (
@@ -35,16 +34,16 @@ export default function GunPage({ gunData, gunKey }) {
         </Button>
         <Grid>
           <Grid.Col span={3} style={{ padding: '20px' }}>
-            <GunStats gunData={gunData}/>
+            <GunStats gunSettings={gunSettings} gunID={gunID}/>
           </Grid.Col>
           <Grid.Col span={9} style={{ padding: '20px' }}>
-            {Object.keys(gunData.levels).map((lvlData, lvl) => 
+            {Object.keys(gunSettings.levels).map((lvlData, lvl) => 
               <LevelCard 
                 level={lvl} 
                 key={lvl}
-                gunKey={gunKey}
-                availableParts={gunData.levels[lvl]}
-                gunData={gunData}
+                gunID={gunID}
+                listOfAvailableParts={gunSettings.levels[lvl]}
+                gunSettings={gunSettings}
               />
             )}
           </Grid.Col>
@@ -66,11 +65,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const gunData = await getGunData(params.id)
+  const gunSettings = await getGunData(params.id)
   return {
     props: {
-      gunData,
-      gunKey: params.id
+      gunSettings,
+      gunID: params.id
     }
   }
 }

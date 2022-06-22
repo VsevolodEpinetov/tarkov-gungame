@@ -16,19 +16,19 @@ const partsNames = {
   optics: 'Оптика'
 }
 
-const PartsList = ({ availableParts, level, gunKey, gunData }) => {
+const PartsList = ({ listOfAvailableParts, level, gunID, gunSettings }) => {
   return (
     <Grid>
-      {Object.keys(availableParts).map(key => {
+      {Object.keys(listOfAvailableParts).map(key => {
         return (
           <Grid.Col span={2} key={key}>
             <PartChooser 
-              availableParts={availableParts[key]} 
+              listOfAvailableParts={listOfAvailableParts[key]} 
               partName={partsNames[key]} 
               partID={key}
               level={level}
-              gunKey={gunKey}
-              gunData={gunData}
+              gunID={gunID}
+              gunSettings={gunSettings}
               />
           </Grid.Col>
         )

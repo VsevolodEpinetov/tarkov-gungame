@@ -3,32 +3,33 @@ import { Card, Image, Text, Title, Grid, Progress, Button, SimpleGrid, createSty
 import PartsList from './PartsList';
 import { useUserProgress } from '../lib/UserProgressContext'
 
-function getProgress (availableParts, unlockedParts) {
+function getProgress (availableForPurchaseParts, unlockedParts) {
   let counter = Object.entries(unlockedParts).length - 11;
   return counter; 
 }
 
-const LevelCard = ( {level, gunKey, availableParts, gunData} ) => {
+const LevelCard = ( {level, gunID, listOfAvailableParts, gunSettings} ) => {
   const { userProgress, setUserProgress } = useUserProgress();
   const [progress, setProgress] = useState(0);
   const [totalParts, setTotalParts] = useState(0);
 
   useEffect(() => {
-    if (userProgress[gunKey].unlocked[level]) {
+    if (userProgress[gunID].progress[level]) {
       let counter = 0;
-      for (const [key, value] of Object.entries(userProgress[gunKey].unlocked[level])) {
+      for (const [key, value] of Object.entries(userProgress[gunID].progress[level])) {
         counter += value.length;
       }
       setProgress(counter);
     }
-    if (availableParts) {
+    if (listOfAvailableParts) {
       let counter = 0;
-      for (const [key, value] of Object.entries(availableParts)) {
+      for (const [key, value] of Object.entries(listOfAvailableParts)) {
         counter += value.length;
       }
       setTotalParts(counter);
     }
   }, [userProgress])
+
   return (
     <div>
       <Title
@@ -37,10 +38,10 @@ const LevelCard = ( {level, gunKey, availableParts, gunData} ) => {
         Уровень {level} ({progress}/{totalParts})
       </Title>
       <PartsList 
-        availableParts={availableParts}
+        listOfAvailableParts={listOfAvailableParts}
         level={level}
-        gunKey={gunKey}
-        gunData={gunData}
+        gunID={gunID}
+        gunSettings={gunSettings}
         />
     </div>
   );

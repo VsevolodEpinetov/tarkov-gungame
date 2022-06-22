@@ -2,16 +2,32 @@ import React, { useEffect, useState } from 'react';
 import { Text, Paper, Title, Image, SimpleGrid, Overlay, Modal } from '@mantine/core';
 import { useUserProgress } from '../lib/UserProgressContext'
 
-const PartImage = ({ partID, partName, gunKey, level, gunData, partNameTechnical }) => {
+const PartImage = ({ partID, partName, gunID, level, gunSettings, partNameTechnical }) => {
   const [style, setStyle] = useState({ filter: 'grayscale(100%)', opacity: '50%' })
   const [opened, setOpened] = useState(false);
   const [message, setMessage] = useState([])
+  const [availablePoints, setAvailablePoints] = useState(0);
   const { userProgress, setUserProgress } = useUserProgress();
-  useEffect(() => {
-    const index = userProgress[gunKey].unlocked[level][partID].indexOf(partNameTechnical);
 
-    if (index > -1) setStyle({})
-  }, [])
+  useEffect(() => {
+    const index = userProgress[gunID].progress[level][partID].indexOf(partNameTechnical);
+
+    const totalPoints = userProgress[gunID].points.forPMCsKills + userProgress[gunID].points.forScavsKills + userProgress[gunID].points.forSurviving;
+    const spentPoints = 0;
+
+    userProgress[gunID].progress.forEach((lvlData, lvl) => {
+      if (lvl > 0) {
+        for (const [key, value] of Object.entries(lvlData)) {
+          spentPoints += value.length;
+        }
+      }
+    });
+
+    setAvailablePoints(totalPoints - spentPoints)
+
+    if (index > -1) setStyle({}) 
+    else setStyle({ filter: 'grayscale(100%)', opacity: '50%' })
+  }, [userProgress])
 
   const changeStateOfPart = () => {
     if (level === 0) {
@@ -20,36 +36,74 @@ const PartImage = ({ partID, partName, gunKey, level, gunData, partNameTechnical
       setMessage(message)
     } else {
       let counter = 0;
-      for (const [key, value] of Object.entries(userProgress[gunKey].unlocked[level - 1])) {
+      for (const [key, value] of Object.entries(userProgress[gunID].progress[level - 1])) {
         counter += value.length;
       }
+      const enoughPoints = availablePoints > 0;
       const minimumPartsAcquired = counter >= 6;
-      const allPartsFromPreviousLevelAreAcquired = userProgress[gunKey].unlocked[level - 1][partID].length === gunData.levels[level - 1][partID].length;
+      const allPartsFromPreviousLevelAreAcquired = userProgress[gunID].progress[level - 1][partID].length === gunSettings.levels[level - 1][partID].length;
 
-      if (minimumPartsAcquired && allPartsFromPreviousLevelAreAcquired) {
+      if (minimumPartsAcquired && allPartsFromPreviousLevelAreAcquired && enoughPoints) {
         let copy = userProgress;
-        const index = copy[gunKey].unlocked[level][partID].indexOf(partNameTechnical)
+        const index = copy[gunID].progress[level][partID].indexOf(partNameTechnical)
 
         if (index > -1) {
-          copy[gunKey].unlocked[level][partID].splice(index, 1)
-          setStyle({ filter: 'grayscale(100%)', opacity: '50%' })
+          copy = {
+            ...copy,
+            [gunID]: {
+              ...copy[gunID],
+              progress: [
+                ...copy[gunID].progress.slice(0, level), 
+                {
+                  ...copy[gunID].progress[level],
+                  [partID]: [
+                    ...copy[gunID].progress[level][partID].slice(0, index),
+                    ...copy[gunID].progress[level][partID].slice(index + 1)
+                  ]
+                },
+                ...copy[gunID].progress.slice(level + 1)
+              ]
+            }
+          }
         } else {
-          copy[gunKey].unlocked[level][partID].push(partNameTechnical)
-          setStyle({})
+          const index = copy[gunID].progress[level][partID].length;
+          copy = {
+            ...copy,
+            [gunID]: {
+              ...copy[gunID],
+              progress: [
+                ...copy[gunID].progress.slice(0, level), 
+                {
+                  ...copy[gunID].progress[level],
+                  [partID]: [
+                    ...copy[gunID].progress[level][partID].slice(0, index),
+                    partNameTechnical,
+                    ...copy[gunID].progress[level][partID].slice(index)
+                  ]
+                },
+                ...copy[gunID].progress.slice(level + 1)
+              ]
+            }
+          }
         }
 
         setUserProgress(copy)
       } else {
-        let message = [`Не выполнен ряд условий!`]
+        let message = [`Не выполнено как минимум одно условие!`]
+
+        part = `Достаточно баллов`
+        if (enoughPoints) part += ' ✅' 
+        else part += ' ❌'
+        message.push(part);
         
         let part = `Приобретено 6+ модулей ${level - 1} уровня:`
-        if (minimumPartsAcquired) part += '✅' 
-        else part += `❌ (${counter}/6)`
+        if (minimumPartsAcquired) part += ' ✅' 
+        else part += ` ❌ (${counter}/6)`
         message.push(part);
 
-        part = `Открыты все модули ${partName} предыдущего уровня`
-        if (allPartsFromPreviousLevelAreAcquired) part += '✅' 
-        else part += '❌'
+        part = `Открыты все ${partName} предыдущего уровня`
+        if (allPartsFromPreviousLevelAreAcquired) part += ' ✅' 
+        else part += ' ❌'
         message.push(part);
 
         setMessage(message);
