@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Image, Text, Title, Grid, Progress, Button, SimpleGrid, createStyles } from '@mantine/core';
 import PartsList from './PartsList';
+import { useUserProgress } from '../lib/UserProgressContext'
 
 function getProgress (availableParts, unlockedParts) {
   let counter = Object.entries(unlockedParts).length - 11;
-  console.log(Object.entries(unlockedParts).length)
   return counter; 
 }
 
-const LevelCard = ( {availableParts, unlockedParts, level} ) => {
+const LevelCard = ( {level, gunKey, availableParts, gunData} ) => {
+  const { userProgress, setUserProgress } = useUserProgress();
   const [progress, setProgress] = useState(0);
   const [totalParts, setTotalParts] = useState(0);
 
   useEffect(() => {
-    if (unlockedParts) {
+    if (userProgress[gunKey].unlocked[level]) {
       let counter = 0;
-      for (const [key, value] of Object.entries(unlockedParts)) {
-        console.log(value)
+      for (const [key, value] of Object.entries(userProgress[gunKey].unlocked[level])) {
         counter += value.length;
       }
       setProgress(counter);
@@ -28,7 +28,7 @@ const LevelCard = ( {availableParts, unlockedParts, level} ) => {
       }
       setTotalParts(counter);
     }
-  }, [availableParts, unlockedParts])
+  }, [userProgress])
   return (
     <div>
       <Title
@@ -36,7 +36,12 @@ const LevelCard = ( {availableParts, unlockedParts, level} ) => {
       >
         Уровень {level} ({progress}/{totalParts})
       </Title>
-      <PartsList availableParts={availableParts} unlockedParts={unlockedParts} />
+      <PartsList 
+        availableParts={availableParts}
+        level={level}
+        gunKey={gunKey}
+        gunData={gunData}
+        />
     </div>
   );
 };

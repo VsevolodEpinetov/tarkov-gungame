@@ -4,9 +4,10 @@ import Head from 'next/head'
 import { setCookies, getCookies, checkCookies, removeCookies } from 'cookies-next';
 import { Card, Image, Text, Title, Grid, Progress, Button } from '@mantine/core';
 import GunsList from '../components/GunsList';
+import { useUserProgress } from '../lib/UserProgressContext'
 
 const Home = () => {
-  const [userData, setUserData] = useState({});
+  /*const [userData, setUserData] = useState({});
   const rawData = getCookies();
 
   useEffect(() => {
@@ -84,8 +85,9 @@ const Home = () => {
         'm4a1': JSON.parse(decodeURIComponent(rawData?.m4a1))
       })
     }
-  }, [])
+  }, [])*/
 
+  const { userProgress, setUserProgress } = useUserProgress();
 
 
   return (
@@ -99,18 +101,18 @@ const Home = () => {
         </Title>
 
         <Button onClick={() => {
-          console.log(userData.ak)
+          console.log(userProgress)
         }}>
           Settings
         </Button>
         <Button onClick={() => {
-          removeCookies('ak')
-          removeCookies('m4a1')
+          let copy = userProgress;
+          copy.ak.unlocked[0].ammo.push('HP')
         }}>
-          null
+          Test
         </Button>
 
-        <GunsList userData={userData}/>
+        <GunsList userData={userProgress}/>
       </main>
 
       <footer>

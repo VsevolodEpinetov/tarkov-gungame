@@ -1,9 +1,13 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { MantineProvider } from '@mantine/core';
+import { setCookies, getCookies, checkCookies, removeCookies } from 'cookies-next';
+import { useEffect } from 'react';
+import { UserProgressProvider } from "../lib/UserProgressContext"
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
+
 
   return (
     <>
@@ -20,7 +24,9 @@ export default function App(props: AppProps) {
           colorScheme: 'dark',
         }}
       >
-        <Component {...pageProps} />
+        <UserProgressProvider>
+          <Component {...pageProps} />
+        </UserProgressProvider>
       </MantineProvider>
     </>
   );
