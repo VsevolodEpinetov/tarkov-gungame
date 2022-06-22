@@ -25,7 +25,7 @@ const PartImage = ({ partID, partName, gunID, level, gunSettings, partNameTechni
 
     setAvailablePoints(totalPoints - spentPoints)
 
-    if (index > -1) setStyle({}) 
+    if (index > -1) setStyle({})
     else setStyle({ filter: 'grayscale(100%)', opacity: '50%' })
   }, [userProgress])
 
@@ -39,40 +39,41 @@ const PartImage = ({ partID, partName, gunID, level, gunSettings, partNameTechni
       for (const [key, value] of Object.entries(userProgress[gunID].progress[level - 1])) {
         counter += value.length;
       }
+      let copy = userProgress;
+      const index = copy[gunID].progress[level][partID].indexOf(partNameTechnical)
       const enoughPoints = availablePoints > 0;
       const minimumPartsAcquired = counter >= 6;
       const allPartsFromPreviousLevelAreAcquired = userProgress[gunID].progress[level - 1][partID].length === gunSettings.levels[level - 1][partID].length;
+      const isSelling = index > -1;
 
-      if (minimumPartsAcquired && allPartsFromPreviousLevelAreAcquired && enoughPoints) {
-        let copy = userProgress;
-        const index = copy[gunID].progress[level][partID].indexOf(partNameTechnical)
-
-        if (index > -1) {
-          copy = {
-            ...copy,
-            [gunID]: {
-              ...copy[gunID],
-              progress: [
-                ...copy[gunID].progress.slice(0, level), 
-                {
-                  ...copy[gunID].progress[level],
-                  [partID]: [
-                    ...copy[gunID].progress[level][partID].slice(0, index),
-                    ...copy[gunID].progress[level][partID].slice(index + 1)
-                  ]
-                },
-                ...copy[gunID].progress.slice(level + 1)
-              ]
-            }
+      if (isSelling) {
+        copy = {
+          ...copy,
+          [gunID]: {
+            ...copy[gunID],
+            progress: [
+              ...copy[gunID].progress.slice(0, level),
+              {
+                ...copy[gunID].progress[level],
+                [partID]: [
+                  ...copy[gunID].progress[level][partID].slice(0, index),
+                  ...copy[gunID].progress[level][partID].slice(index + 1)
+                ]
+              },
+              ...copy[gunID].progress.slice(level + 1)
+            ]
           }
-        } else {
+        }
+        setUserProgress(copy)
+      } else {
+        if (minimumPartsAcquired && allPartsFromPreviousLevelAreAcquired && enoughPoints) {
           const index = copy[gunID].progress[level][partID].length;
           copy = {
             ...copy,
             [gunID]: {
               ...copy[gunID],
               progress: [
-                ...copy[gunID].progress.slice(0, level), 
+                ...copy[gunID].progress.slice(0, level),
                 {
                   ...copy[gunID].progress[level],
                   [partID]: [
@@ -85,29 +86,30 @@ const PartImage = ({ partID, partName, gunID, level, gunSettings, partNameTechni
               ]
             }
           }
+
+
+          setUserProgress(copy)
+        } else {
+          let message = [`Не выполнено как минимум одно условие!`]
+
+          part = `Достаточно баллов`
+          if (enoughPoints) part += ' ✅'
+          else part += ' ❌'
+          message.push(part);
+
+          let part = `Приобретено 6+ модулей ${level - 1} уровня:`
+          if (minimumPartsAcquired) part += ' ✅'
+          else part += ` ❌ (${counter}/6)`
+          message.push(part);
+
+          part = `Открыты все ${partName} предыдущего уровня`
+          if (allPartsFromPreviousLevelAreAcquired) part += ' ✅'
+          else part += ' ❌'
+          message.push(part);
+
+          setMessage(message);
+          setOpened(true)
         }
-
-        setUserProgress(copy)
-      } else {
-        let message = [`Не выполнено как минимум одно условие!`]
-
-        part = `Достаточно баллов`
-        if (enoughPoints) part += ' ✅' 
-        else part += ' ❌'
-        message.push(part);
-        
-        let part = `Приобретено 6+ модулей ${level - 1} уровня:`
-        if (minimumPartsAcquired) part += ' ✅' 
-        else part += ` ❌ (${counter}/6)`
-        message.push(part);
-
-        part = `Открыты все ${partName} предыдущего уровня`
-        if (allPartsFromPreviousLevelAreAcquired) part += ' ✅' 
-        else part += ' ❌'
-        message.push(part);
-
-        setMessage(message);
-        setOpened(true)
       }
     }
   }
