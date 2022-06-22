@@ -139,8 +139,8 @@ const GunStats = ({ gunSettings, gunID }) => {
         </Text>
       </Card.Section>
 
-      <Card.Section className={classes.section}>
-        <Text weight={500} size="lg">
+      <Card.Section className={classes.section} style={{ textAlign: 'center' }}>
+        <Text weight={500} size="xl" style={{textShadow: '0 0 10px #408000', fontSize: '35px'}}>
           Баллы
         </Text>
         <Text size="sm">
@@ -159,8 +159,7 @@ const GunStats = ({ gunSettings, gunID }) => {
           value={killedPMC}
           onChange={changePMC}
         />
-      </Card.Section>
-      <Card.Section className={classes.section}>
+
         <KillsInput
           placeholder='Убито Диких'
           label='Убито Диких'
@@ -169,9 +168,7 @@ const GunStats = ({ gunSettings, gunID }) => {
           value={killedScavs}
           onChange={changeScavs}
         />
-      </Card.Section>
 
-      <Card.Section className={classes.section}>
         <KillsInput
           placeholder='Выживаний'
           label='Выживаний'

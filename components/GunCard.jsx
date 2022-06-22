@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Image, Text, Grid } from '@mantine/core';
 import GunProgress from '../components/GunProgress'
 
-const GunCard = ( {gunInfo, userData, gunName} ) => {
+const GunCard = ( {gunInfo, userData, gunID} ) => {
   return (
     <Grid.Col span={3}>
       <div style={{ padding: '15px' }}>
@@ -10,7 +10,7 @@ const GunCard = ( {gunInfo, userData, gunName} ) => {
           shadow="sm"
           p="xl"
           component="a"
-          href={`/guns/${gunName}`}
+          href={`/guns/${gunID}`}
         >
           <Card.Section>
             <Image src={`img/${gunInfo.previewImage}`} alt="Ak Preview" />
@@ -24,7 +24,7 @@ const GunCard = ( {gunInfo, userData, gunName} ) => {
             {gunInfo?.subtitle}
           </Text>
           <br />
-          <GunProgress userPoints={userData?.points} totalPoints={gunInfo?.totalPoints}/>
+          <GunProgress gunID={gunID} totalPoints={gunInfo?.totalPoints}/>
         </Card>
       </div>
     </Grid.Col>
