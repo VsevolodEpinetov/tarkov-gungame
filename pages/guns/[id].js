@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { setCookies, getCookies, checkCookies, removeCookies } from 'cookies-next';
-import { Card, Image, Text, Title, Grid, Progress, Button, SimpleGrid, createStyles, NumberInput } from '@mantine/core';
+import { Card, Image, Text, Title, Grid, Progress, Button, SimpleGrid, createStyles, NumberInput, Accordion, useAccordionState } from '@mantine/core';
 import PartsList from '../../components/PartsList';
 
 import { getAllGunsNames, getGunData } from '../../lib/guns'
@@ -11,6 +11,66 @@ import GunStats from '../../components/GunStats';
 
 export default function GunPage({ gunSettings, gunID }) {
   const { userProgress, setUserProgress } = useUserProgress();
+  const [amountOfUnlockedParts, setAmountOfUnlockedParts] = useState([]);
+  const [amountOfAvailableParts, setAmountOfAvailableParts] = useState([]);
+  const [wasSet, setWasSet] = useState(false);
+  const [andEven0WasSet, setAndEven0WasSet] = useState(false);
+  const [state, handlers] = useAccordionState({ total: 7 })
+
+  useEffect(() => {
+    if (!wasSet) {
+      let lastUnlockedLevel = 0;
+      userProgress[gunID].progress.forEach((levelData, level) => {
+        for (const [key, value] of Object.entries(levelData)) {
+          if (value.length > 0) {
+            lastUnlockedLevel = level;
+          }
+        }
+      })
+      if (lastUnlockedLevel > 0) {
+        handlers.toggle(lastUnlockedLevel)
+        setWasSet(true)
+      } else {
+        // It looks embarassing to me but I am really can't think
+        // of better 'not hacky' way to implement it.
+        // By the wat, 'setWasSet' is being passed up to
+        // PartImage.jsx because there is a click handler
+        if (!andEven0WasSet) {
+          handlers.toggle(lastUnlockedLevel)
+          setAndEven0WasSet(true)
+        }
+      }
+    }
+  }, [userProgress])
+
+  useEffect(() => {
+    let copy = amountOfUnlockedParts.slice()
+    let lastUnlockedLevel = 0;
+    userProgress[gunID].progress.forEach((levelData, level) => {
+      let counter = 0;
+      for (const [key, value] of Object.entries(levelData)) {
+        counter += value.length;
+      }
+      copy = [...copy.slice(0, level), counter, ...copy.slice(level)]
+
+      if (counter > 0) lastUnlockedLevel = level;
+    })
+    copy = copy.filter((item, index) => index < userProgress[gunID].progress.length);
+    setAmountOfUnlockedParts(copy);
+
+    copy = amountOfAvailableParts.slice()
+    gunSettings.levels.forEach((levelData, level) => {
+      let counter = 0;
+      for (const [key, value] of Object.entries(levelData)) {
+        counter += value.length;
+      }
+      copy = [...copy.slice(0, level), counter, ...copy.slice(level)]
+    })
+    copy = copy.filter((item, index) => index < gunSettings.levels.length);
+    setAmountOfAvailableParts(copy);
+
+  }, [userProgress])
+
 
   return (
     <div>
@@ -34,18 +94,23 @@ export default function GunPage({ gunSettings, gunID }) {
         </Button>
         <Grid>
           <Grid.Col span={3} style={{ padding: '20px' }}>
-            <GunStats gunSettings={gunSettings} gunID={gunID}/>
+            <GunStats gunSettings={gunSettings} gunID={gunID} setWasSet={setWasSet}/>
           </Grid.Col>
           <Grid.Col span={9} style={{ padding: '20px' }}>
-            {Object.keys(gunSettings.levels).map((lvlData, lvl) => 
-              <LevelCard 
-                level={lvl} 
-                key={lvl}
-                gunID={gunID}
-                listOfAvailableParts={gunSettings.levels[lvl]}
-                gunSettings={gunSettings}
-              />
-            )}
+            <Accordion multiple state={state} onChange={handlers.setState}>
+              {Object.keys(gunSettings.levels).map((lvlData, lvl) =>
+                <Accordion.Item label={`Уровень ${lvl} (${amountOfUnlockedParts[lvl]}/${amountOfAvailableParts[lvl]})`} key={`${lvl}-accordion-parent`}>
+                  <LevelCard
+                    level={lvl}
+                    key={lvl}
+                    gunID={gunID}
+                    listOfAvailableParts={gunSettings.levels[lvl]}
+                    gunSettings={gunSettings}
+                    setWasSet={setWasSet}
+                  />
+                </Accordion.Item>
+              )}
+            </Accordion>
           </Grid.Col>
         </Grid>
       </main>

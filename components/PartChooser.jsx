@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, Paper, Title, Image, SimpleGrid } from '@mantine/core';
 import PartImage from './PartImage';
 
-const PartChooser = ({ listOfAvailableParts, partName, partID, gunID, level, gunSettings }) => {
+const PartChooser = ({ listOfAvailableParts, partName, partID, gunID, level, gunSettings, setWasSet }) => {
   return (
     <Paper shadow="xs" p="sm" withBorder style={{ paddingTop: '2px' }}>
       <Text align="center" style={{}} weight={700}>
@@ -19,6 +19,8 @@ const PartChooser = ({ listOfAvailableParts, partName, partID, gunID, level, gun
                 gunID={gunID}
                 level={level}
                 gunSettings={gunSettings}
+                key={`${partID}-${level}-${name}`}
+                setWasSet={setWasSet}
               />
             )}
           </>

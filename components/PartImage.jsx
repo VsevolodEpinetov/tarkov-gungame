@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Text, Paper, Title, Image, SimpleGrid, Overlay, Modal } from '@mantine/core';
 import { useUserProgress } from '../lib/UserProgressContext'
 
-const PartImage = ({ partID, partName, gunID, level, gunSettings, partNameTechnical }) => {
+const PartImage = ({ partID, partName, gunID, level, gunSettings, partNameTechnical, setWasSet }) => {
   const [style, setStyle] = useState({ filter: 'grayscale(100%)', opacity: '50%' })
   const [opened, setOpened] = useState(false);
   const [message, setMessage] = useState([])
@@ -30,6 +30,7 @@ const PartImage = ({ partID, partName, gunID, level, gunSettings, partNameTechni
   }, [userProgress])
 
   const changeStateOfPart = () => {
+    setWasSet(true);
     if (level === 0) {
       setOpened(true);
       let message = ['Модули нулевого уровня нельзя "продать", они открыты по-умолчанию.']
@@ -130,7 +131,7 @@ const PartImage = ({ partID, partName, gunID, level, gunSettings, partNameTechni
         onClose={() => setOpened(false)}
         title='Ошибка'
       >
-        {message.map(line => <Text>{line}</Text>)}
+        {message.map((line, id) => <Text key={`text-${id}`}>{line}</Text>)}
       </Modal>
     </>
   );

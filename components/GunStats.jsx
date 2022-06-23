@@ -29,7 +29,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const GunStats = ({ gunSettings, gunID }) => {
+const GunStats = ({ gunSettings, gunID, setWasSet }) => {
   const { classes } = useStyles();
   const [availablePoints, setAvailablePoints] = useState(0);
   const [totalPoints, setTotalPoints] = useState(0);
@@ -59,6 +59,7 @@ const GunStats = ({ gunSettings, gunID }) => {
   }, [userProgress])
 
   const changePMC = (isItIncrementation) => {
+    setWasSet(true);
     let copy = userProgress;
     let points = userProgress[gunID].points.forPMCsKills;
     if (!isItIncrementation) points--;
@@ -80,6 +81,7 @@ const GunStats = ({ gunSettings, gunID }) => {
   }
 
   const changeScavs = (isItIncrementation) => {
+    setWasSet(true);
     let copy = userProgress;
     let points = userProgress[gunID].points.forScavsKills;
     if (!isItIncrementation) points--;
@@ -101,6 +103,7 @@ const GunStats = ({ gunSettings, gunID }) => {
   }
 
   const changeSurvived = (isItIncrementation) => {
+    setWasSet(true);
     let copy = userProgress;
     let points = userProgress[gunID].points.forSurviving;
     if (!isItIncrementation) points--;
