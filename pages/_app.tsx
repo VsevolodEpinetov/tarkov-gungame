@@ -1,12 +1,25 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { MantineProvider } from '@mantine/core';
-import { setCookies, getCookies, checkCookies, removeCookies } from 'cookies-next';
-import { useEffect } from 'react';
+import { MantineProvider, AppShell, Navbar, Header } from '@mantine/core';
+import { useEffect, useState } from 'react';
+import { setCookies, getCookie, checkCookies, removeCookies } from 'cookies-next';
 import { UserProgressProvider } from "../lib/UserProgressContext"
+import MyHeader from "../components/MyHeader"
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
+  const [scheme, setScheme] = useState(true);
+
+  useEffect(() => {
+    if (!checkCookies('scheme')) {
+      setCookies('scheme', true)
+    } else {
+      const userScheme = getCookie('scheme');
+      setScheme(userScheme);
+      console.log(`userScheme: ${JSON.stringify(userScheme)}`)
+    }
+    console.log(`setting scheme to ${scheme ? 'dark' : 'light'}`)
+  }, [])
 
 
   return (
@@ -21,12 +34,18 @@ export default function App(props: AppProps) {
         withNormalizeCSS
         theme={{
           /** Put your mantine theme override here */
-          colorScheme: 'dark',
+          colorScheme: scheme ? 'dark' : 'light',
+          primaryColor: 'violet'
         }}
       >
-        <UserProgressProvider>
-          <Component {...pageProps} />
-        </UserProgressProvider>
+        <AppShell
+          header={<Header height={60} p="xs"><MyHeader scheme={scheme} setScheme={setScheme}/></Header>}
+          padding="md"
+        >
+          <UserProgressProvider>
+            <Component {...pageProps} />
+          </UserProgressProvider>
+        </AppShell>
       </MantineProvider>
     </>
   );

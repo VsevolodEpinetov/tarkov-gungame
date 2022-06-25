@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { setCookies, getCookies, checkCookies, removeCookies } from 'cookies-next';
-import { Card, Image, Text, Title, Grid, Progress, Button, SimpleGrid, createStyles, NumberInput, Accordion, useAccordionState } from '@mantine/core';
+import { Card, Image, Text, Title, Grid, Progress, Button, SimpleGrid, createStyles, NumberInput, Accordion, useAccordionState, Group } from '@mantine/core';
 import PartsList from '../../components/PartsList';
+import { Lock } from 'tabler-icons-react';
 
 import { getAllGunsNames, getGunData } from '../../lib/guns'
 import LevelCard from '../../components/LevelCard';
@@ -71,6 +72,31 @@ export default function GunPage({ gunSettings, gunID }) {
 
   }, [userProgress])
 
+  function AccordionLabel({ level, amountOfUnlockedParts, amountOfAvailableParts }) {
+    const percentage = Math.ceil(amountOfUnlockedParts[level]/amountOfAvailableParts[level] * 100) || 0;
+    let color = 'red';
+    switch (true) {
+      case percentage > 25 && percentage < 50:
+        color = 'orange';
+        break;
+      case percentage >= 50:
+        color = 'green'
+        break;
+    }
+    let isLocked = false;
+    if (level > 0) {
+      if (amountOfUnlockedParts[level - 1] < 6) isLocked = true;
+    }
+
+    return (
+      <Group>
+        <Text>{isLocked ? '🔒' : ''}Уровень {level} ({amountOfUnlockedParts[level]}/{amountOfAvailableParts[level]})</Text>
+        <div style={{width: '30%'}}>
+          <Progress color={color} size="xl" value={percentage} label={`${percentage}%`}/>
+        </div>
+      </Group>
+    );
+  }
 
   return (
     <div>
@@ -94,12 +120,12 @@ export default function GunPage({ gunSettings, gunID }) {
         </Button>
         <Grid>
           <Grid.Col span={3} style={{ padding: '20px' }}>
-            <GunStats gunSettings={gunSettings} gunID={gunID} setWasSet={setWasSet}/>
+            <GunStats gunSettings={gunSettings} gunID={gunID} setWasSet={setWasSet} />
           </Grid.Col>
           <Grid.Col span={9} style={{ padding: '20px' }}>
             <Accordion multiple state={state} onChange={handlers.setState}>
               {Object.keys(gunSettings.levels).map((lvlData, lvl) =>
-                <Accordion.Item label={`Уровень ${lvl} (${amountOfUnlockedParts[lvl]}/${amountOfAvailableParts[lvl]})`} key={`${lvl}-accordion-parent`}>
+                <Accordion.Item label={<AccordionLabel level={lvl} amountOfUnlockedParts={amountOfUnlockedParts} amountOfAvailableParts={amountOfAvailableParts} />} key={`${lvl}-accordion-parent`}>
                   <LevelCard
                     level={lvl}
                     key={lvl}
