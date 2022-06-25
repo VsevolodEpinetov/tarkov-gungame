@@ -30,7 +30,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const GunStats = ({ gunSettings, gunID, setWasSet }) => {
-  const { classes } = useStyles();
+  const { classes, theme } = useStyles();
   const [availablePoints, setAvailablePoints] = useState(0);
   const [totalPoints, setTotalPoints] = useState(0);
   const { userProgress, setUserProgress } = useUserProgress();
@@ -133,7 +133,7 @@ const GunStats = ({ gunSettings, gunID, setWasSet }) => {
       className={classes.card}
     >
       <Card.Section>
-        <Image src={`../img/${gunSettings.previewImage}`} alt="Ak Preview" />
+        <Image src={`../img/${gunSettings.previewImageCard}`} alt="Ak Preview" />
       </Card.Section>
 
       <Card.Section className={classes.section}>
@@ -143,7 +143,7 @@ const GunStats = ({ gunSettings, gunID, setWasSet }) => {
       </Card.Section>
 
       <Card.Section className={classes.section} style={{ textAlign: 'center' }}>
-        <Text weight={500} size="xl" style={{textShadow: '0 0 10px #408000', fontSize: '35px'}}>
+        <Text weight={500} size="xl" style={{textShadow: '0 0 10px #431d72', fontSize: '35px'}}>
           Баллы
         </Text>
         <Text size="sm">

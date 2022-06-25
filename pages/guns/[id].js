@@ -101,23 +101,6 @@ export default function GunPage({ gunSettings, gunID }) {
   return (
     <div>
       <main style={{ padding: '25px' }}>
-        <Title
-          align="center"
-          sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}
-        >
-          <Link href='/'>Tarkov GunGame</Link>
-        </Title>
-        <Button onClick={() => {
-          console.log(userProgress)
-        }}>
-          Settings
-        </Button>
-        <Button onClick={() => {
-          let copy = userProgress;
-          copy.ak.unlocked[0].ammo.push('HP')
-        }}>
-          Test
-        </Button>
         <Grid>
           <Grid.Col span={3} style={{ padding: '20px' }}>
             <GunStats gunSettings={gunSettings} gunID={gunID} setWasSet={setWasSet} />

@@ -1,8 +1,8 @@
 import { NextPage } from 'next'
 import { useEffect, useState } from 'react';
 import Head from 'next/head'
-import { Card, Image, Text, Title, Grid, Progress, Button, createStyles, Container, List, ThemeIcon, Group, Modal } from '@mantine/core';
-import { Check, BrandGithub } from 'tabler-icons-react';
+import { Card, Image, Text, Title, Grid, Progress, Button, createStyles, Container, List, ThemeIcon, Group, Modal, ListItem } from '@mantine/core';
+import { Check, BrandGithub, CircleX } from 'tabler-icons-react';
 import GunsList from '../components/GunsList';
 import { useUserProgress } from '../lib/UserProgressContext'
 import Pic from '../public/bg.png'
@@ -126,10 +126,29 @@ const Home = () => {
       <Modal
         opened={opened}
         onClose={() => setOpened(false)}
-        title="Как играть?"
+        title="А как какать?"
         size='xl'
       >
-        <Text>Прежде всего - выбери из списка ниже оружие. Для прогрессии в игре тебе будет необходимо брать его в каждый рейд.</Text>
+        <Text>Цель челленджа - прокачать выбранный ствол в мясо. Сделать это можно, покупая модули за баллы (1 модуль = 1 балл). Баллы даются за:</Text>
+        <List>
+          <ListItem>Убийство ЧВК. 1 ЧВК = 1 балл</ListItem>
+          <ListItem>Убийство Диких. 5 Диких = 1 балл</ListItem>
+          <ListItem>Выход с рейда с статусом "Выжил". 1 выживание = 1 балл</ListItem>
+        </List>
+        <Text>Ограничения:</Text>
+        <List
+          icon={
+            <ThemeIcon color="red" size={20} radius="xl">
+              <CircleX size={16} />
+            </ThemeIcon>
+          }
+        >
+          <ListItem>Убийства с оружия вне челленджа не дают баллов!</ListItem>
+          <ListItem>Покупать модули следующего уровня можно только после покупки 6 модулей на предыдущем уровне и всех модулей данного типа в нём.</ListItem>
+          <ListItem>После покупки модуля его нельзя продавать. На сайте функционал продажи есть на случай ошибок, но не рекомендуется это абьюзить.</ListItem>
+          <ListItem>Нельзя использовать найденные модули и патроны</ListItem>
+        </List>
+        <Text>Покупать модули следующего уровня можно только после покупки 6 модулей на предыдущем уровне и всех модулей данного типа в нём.</Text>
       </Modal>
 
       <footer>
