@@ -14,11 +14,9 @@ export default function App(props: AppProps) {
     if (!checkCookies('scheme')) {
       setCookies('scheme', true)
     } else {
-      const userScheme = getCookie('scheme');
+      const userScheme = Boolean(getCookie('scheme'));
       setScheme(userScheme);
-      console.log(`userScheme: ${JSON.stringify(userScheme)}`)
     }
-    console.log(`setting scheme to ${scheme ? 'dark' : 'light'}`)
   }, [])
 
 

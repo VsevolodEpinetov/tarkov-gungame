@@ -131,7 +131,7 @@ const Home = () => {
         <List>
           <ListItem>Убийство ЧВК. 1 ЧВК = 1 балл</ListItem>
           <ListItem>Убийство Диких. 5 Диких = 1 балл</ListItem>
-          <ListItem>Выход с рейда с статусом "Выжил". 1 выживание = 1 балл</ListItem>
+          <ListItem>Выход с рейда с статусом &quot;Выжил&quot;. 1 выживание = 1 балл</ListItem>
         </List>
         <Text>Ограничения:</Text>
         <List
