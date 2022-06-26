@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, Paper, Title, Image, SimpleGrid, Overlay, Modal } from '@mantine/core';
+import { Text, Image, Modal } from '@mantine/core';
 import { useUserProgress } from '../lib/UserProgressContext'
 
 const PartImage = ({ partID, partName, gunID, level, gunSettings, partNameTechnical, setWasSet }) => {

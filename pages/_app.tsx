@@ -1,6 +1,6 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { MantineProvider, AppShell, Navbar, Header } from '@mantine/core';
+import { MantineProvider, AppShell, Header } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { setCookies, getCookie, checkCookies, removeCookies } from 'cookies-next';
 import { UserProgressProvider } from "../lib/UserProgressContext"

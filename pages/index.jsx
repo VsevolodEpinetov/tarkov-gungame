@@ -1,7 +1,5 @@
-import { NextPage } from 'next'
-import { useEffect, useState } from 'react';
-import Head from 'next/head'
-import { Card, Image, Text, Title, Grid, Progress, Button, createStyles, Container, List, ThemeIcon, Group, Modal, ListItem } from '@mantine/core';
+import { useState } from 'react';
+import { Image, Text, Title, Button, createStyles, Container, List, ThemeIcon, Group, Modal, ListItem } from '@mantine/core';
 import { Check, BrandGithub, CircleX } from 'tabler-icons-react';
 import GunsList from '../components/GunsList';
 import { useUserProgress } from '../lib/UserProgressContext'
@@ -64,7 +62,7 @@ const useStyles = createStyles((theme) => ({
 
 const Home = () => {
   const { userProgress, setUserProgress } = useUserProgress();
-  const { classes, theme } = useStyles();
+  const { classes } = useStyles();
   const [opened, setOpened] = useState(false);
 
 

@@ -1,9 +1,7 @@
 import React from 'react';
-import { Button, ActionIcon, Image, Container, createStyles, Group } from '@mantine/core';
+import { ActionIcon, Image, Container, createStyles, Group } from '@mantine/core';
 import { BrandGithub, BrandTelegram, Bulb, BulbOff } from 'tabler-icons-react';
-import { setCookies, getCookies, checkCookies, removeCookies } from 'cookies-next';
-import logoLight from '../public/logo-light.svg'
-import logoDark from '../public/logo-dark.svg'
+import { setCookies } from 'cookies-next';
 import Link from 'next/link';
 
 const useStyles = createStyles(() => ({
@@ -16,7 +14,7 @@ const useStyles = createStyles(() => ({
 }));
 
 const MyHeader = ({ scheme, setScheme }) => {
-  const { classes, cx } = useStyles();
+  const { classes } = useStyles();
 
   function setUserScheme() {
     setCookies('scheme', !scheme)

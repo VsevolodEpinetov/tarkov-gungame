@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { NumberInput, Group, ActionIcon, NumberInputHandlers, Text } from '@mantine/core';
 
 const KillsInput = ({ description, label, placeholder, step, value, onChange }) => {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { setCookies, getCookies, checkCookies, removeCookies } from 'cookies-next';
-import { Card, Image, Text, Title, Grid, Progress, Button, SimpleGrid, createStyles, NumberInput } from '@mantine/core';
+import { Card, Image, Text, createStyles } from '@mantine/core';
 import KillsInput from './KillsInput';
 import { useUserProgress } from '../lib/UserProgressContext'
 

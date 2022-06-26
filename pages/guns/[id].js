@@ -1,13 +1,9 @@
 import { useEffect, useState } from 'react';
-import { setCookies, getCookies, checkCookies, removeCookies } from 'cookies-next';
-import { Card, Image, Text, Title, Grid, Progress, Button, SimpleGrid, createStyles, NumberInput, Accordion, useAccordionState, Group } from '@mantine/core';
-import PartsList from '../../components/PartsList';
-import { Lock } from 'tabler-icons-react';
+import { Text, Grid, Progress, Accordion, useAccordionState, Group } from '@mantine/core';
 
 import { getAllGunsNames, getGunData } from '../../lib/guns'
 import LevelCard from '../../components/LevelCard';
 import { useUserProgress } from '../../lib/UserProgressContext'
-import Link from 'next/link';
 import GunStats from '../../components/GunStats';
 
 export default function GunPage({ gunSettings, gunID }) {

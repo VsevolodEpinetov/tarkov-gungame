@@ -1,6 +1,5 @@
 import React from 'react';
-import { Card, Image, Text, Grid, createStyles, Paper, Button, Title, Center, Group, Stack } from '@mantine/core';
-import { Eye, MessageCircle } from 'tabler-icons-react';
+import { Card, Text, Grid, createStyles, Stack } from '@mantine/core';
 import GunProgress from '../components/GunProgress'
 
 const useStyles = createStyles((theme, _params, getRef) => {

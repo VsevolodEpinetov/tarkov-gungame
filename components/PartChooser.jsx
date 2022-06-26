@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Paper, Title, Image, SimpleGrid } from '@mantine/core';
+import { Text, Paper, SimpleGrid } from '@mantine/core';
 import PartImage from './PartImage';
 
 const PartChooser = ({ listOfAvailableParts, partName, partID, gunID, level, gunSettings, setWasSet }) => {
