@@ -86,17 +86,17 @@
         "optics": [ "30mmmount_1_2", "tac30_1_2"]
       },
       {
-        "butts": [],
-        "grips": [],
+        "butts": ["akmlock_1_1", "pt1klassika_1_2"],
+        "grips": [ "kgbmg47_1_1" ],
         "magazines": [],
         "muzzles": [],
         "covers": [],
-        "tubes": [],
-        "handguards": [],
-        "tacticalGrips": [],
-        "ammo": [],
-        "sights": [],
-        "optics": []
+        "tubes": [ "vscombo_1_2" ],
+        "handguards": [ "hexagon_1_2" ],
+        "tacticalGrips": [ "magpulrvg_1_1" ],
+        "ammo": [ "545bp_1_1" ],
+        "sights": [ "srs02_1_1" ],
+        "optics": [ "marchtacticalffp_1_2" ]
       }
     ]
   },
