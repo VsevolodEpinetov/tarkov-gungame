@@ -10,25 +10,23 @@ const PartImage = ({ partID, partName, gunID, level, gunSettings, partNameTechni
   const { userProgress, setUserProgress } = useUserProgress();
 
   useEffect(() => {
-    if (userProgress[gunID].progress.length > 1) {
-      const index = userProgress[gunID].progress[level][partID].indexOf(partNameTechnical);
+    const index = userProgress[gunID].progress[level][partID].indexOf(partNameTechnical);
 
-      const totalPoints = userProgress[gunID].points.forPMCsKills + userProgress[gunID].points.forScavsKills + userProgress[gunID].points.forSurviving;
-      const spentPoints = 0;
+    const totalPoints = userProgress[gunID].points.forPMCsKills + userProgress[gunID].points.forScavsKills + userProgress[gunID].points.forSurviving;
+    const spentPoints = 0;
 
-      userProgress[gunID].progress.forEach((lvlData, lvl) => {
-        if (lvl > 0) {
-          for (const [key, value] of Object.entries(lvlData)) {
-            spentPoints += value.length;
-          }
+    userProgress[gunID].progress.forEach((lvlData, lvl) => {
+      if (lvl > 0) {
+        for (const [key, value] of Object.entries(lvlData)) {
+          spentPoints += value.length;
         }
-      });
+      }
+    });
 
-      setAvailablePoints(totalPoints - spentPoints)
+    setAvailablePoints(totalPoints - spentPoints)
 
-      if (index > -1) setStyle({})
-      else setStyle({ filter: 'grayscale(100%)', opacity: '50%' })
-    }
+    if (index > -1) setStyle({})
+    else setStyle({ filter: 'grayscale(100%)', opacity: '50%' })
   }, [userProgress])
 
   const changeStateOfPart = () => {
