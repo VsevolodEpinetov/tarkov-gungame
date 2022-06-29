@@ -86,7 +86,7 @@ const GunCard = ({ gunInfo, gunID }) => {
 
               <Stack spacing='md'>
                 <Text size="sm" className={classes.author}>
-                  Test
+                  {gunInfo.subtitle}
                 </Text>
 
                 <GunProgress gunID={gunID} totalPoints={gunInfo.totalPoints} />

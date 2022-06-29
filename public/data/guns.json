@@ -1,7 +1,7 @@
 {
   "ak": {
     "title": "АК-74",
-    "subtitle": "Автомат Калашникова калибра 5,45 мм, разработанный в 1970 году конструктором М. Т. Калашниковым как дальнейшее развитие АКМ в связи с переходом Вооруженных Сил на новый боеприпас 5.45x39.",
+    "subtitle": "АК калибра 5.45х39. Что может быть надёжнее?",
     "previewImageDark": "AKPreview-dark.png",
     "previewImageLight": "AKPreview-light.png",
     "previewImageCard": "AKPreview.png",
@@ -102,7 +102,108 @@
   },
   "m4a1": {
     "title": "M4A1",
-    "subtitle": "Colt M4A1- штурмовая винтовка (карабин), созданная в США на базе платформы AR-15 под патрон 5.56x45 NATO. Планировалась к вооружению экипажей боевых машин и расчётов техники, которым было необходимо иметь оружие меньших габаритов, чем штатное вооружение, но использующее стандартные боеприпасы. Однако вскоре, US SOCOM (Командование Сил Специальных Операций США) приняло на вооружение M4A1 для всех входящих в его состав подразделений. Затем последовало полное принятие M4A1 на вооружение в армии и морской пехоте США.",
+    "subtitle": "Девочка-эмочка вернёт тебя в 2007. 5.56x45",
+    "previewImageDark": "M4A1Preview-dark.png",
+    "previewImageLight": "M4A1Preview-light.png",
+    "previewImageCard": "M4A1Preview.png",
+    "totalPoints": 128,
+    "levels": [
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      },
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      },
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      },
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      },
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      },
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      },
+      {
+        "butts": [],
+        "grips": [],
+        "magazines": [],
+        "muzzles": [],
+        "covers": [],
+        "tubes": [],
+        "handguards": [],
+        "tacticalGrips": [],
+        "ammo": [],
+        "sights": [],
+        "optics": []
+      }
+    ]
+  },
+  "sa58": {
+    "title": "SA-58",
+    "subtitle": "Тест",
     "previewImageDark": "M4A1Preview-dark.png",
     "previewImageLight": "M4A1Preview-light.png",
     "previewImageCard": "M4A1Preview.png",
